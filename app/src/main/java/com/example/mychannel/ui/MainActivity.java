@@ -24,8 +24,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
-
         bottom_nav = (BottomNavigationView) findViewById(R.id.bottom_menu);
         bottom_nav.setOnNavigationItemSelectedListener(this);
     }

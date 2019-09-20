@@ -54,6 +54,8 @@ public class TvData implements Parcelable {
         this.poster_path = poster_path;
     }
 
+    public TvData(){}
+
     public TvData(JSONObject object){
         try {
             int id = object.getInt("id");
