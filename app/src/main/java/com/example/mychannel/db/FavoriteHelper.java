@@ -10,6 +10,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
 import com.example.mychannel.model.MovieData;
+import com.example.mychannel.model.TvData;
 
 import java.util.ArrayList;
 

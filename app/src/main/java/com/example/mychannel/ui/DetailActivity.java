@@ -1,12 +1,17 @@
 package com.example.mychannel.ui;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.example.mychannel.R;
@@ -16,7 +21,7 @@ import com.example.mychannel.model.TvData;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class DetailActivity extends AppCompatActivity {
+public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
     CircleImageView imgFilm;
     private TextView titleFilm, descOfFilm;
@@ -53,6 +58,7 @@ public class DetailActivity extends AppCompatActivity {
         imgFilm = (CircleImageView) findViewById(R.id.img_circle);
         titleFilm = (TextView) findViewById(R.id.tv_title_film);
         descOfFilm = (TextView) findViewById(R.id.tv_desc_film);
+        imgFavorite = (ImageView) findViewById(R.id.img_favorite);
 
         movieData = getIntent().getParcelableExtra(EXTRA_DATA);
 
@@ -66,7 +72,44 @@ public class DetailActivity extends AppCompatActivity {
                 .into(imgFilm);
 
 
+        imgFavorite.setOnClickListener(this);
+
         favoriteHelper = FavoriteHelper.getInstance(getApplicationContext());
+        if (FavoriteHelper.getInstance(this).isFavorite(id)){
+            imgFavorite.setImageDrawable(getResources().getDrawable(R.drawable.ic_favorite_black_24dp));
+        }
+
+    }
+
+    @Override
+    public void onClick(View view) {
+        if(view.getId() == R.id.img_favorite){
+            if(FavoriteHelper.getInstance(this).isFavorite(id)) {
+                showAlertDialog(ALERT_DIALOG_DELETE);
+            } else {
+                String title = titleFilm.getText().toString().trim();
+                String desc = descOfFilm.getText().toString().trim();
+
+                movieData.setTitle(title);
+                movieData.setOverview(desc);
+                movieData.setPoster_path(imgUrl);
+                movieData.setId(movieData.getId());
+
+                Intent intent = new Intent();
+                intent.putExtra(EXTRA_FAVORITES,movieData);
+                intent.putExtra(EXTRA_POSITION,0);
+
+                long result = favoriteHelper.insertNote(movieData);
+
+                if (result > 0 ){
+                    movieData.setId((int) result);
+                    setResult(RESULT_ADD, intent);
+                    finish();
+                } else {
+                    Toast.makeText(DetailActivity.this, "Gagal menambahkan ke favorite", Toast.LENGTH_SHORT).show();
+                }
+            }
+        }
     }
 
     private Observer<? super MovieData> getCheckMovie = new Observer<MovieData>() {
@@ -76,4 +119,38 @@ public class DetailActivity extends AppCompatActivity {
         }
     };
 
+
+    private void showAlertDialog(int type) {
+
+        String dialogTitle, dialogMessage;
+        dialogMessage = "Apakah anda yakin ingin menghapus item ini dari favorite?";
+        dialogTitle = "Hapus Note";
+
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+        alertDialogBuilder.setTitle(dialogTitle);
+        alertDialogBuilder
+                .setMessage(dialogMessage)
+                .setCancelable(false)
+                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        int result = favoriteHelper.deleteNote(movieData.getId());
+                        if (result > 0) {
+                            Intent intent = new Intent();
+                            intent.putExtra(EXTRA_POSITION, position);
+                            setResult(RESULT_DELETE, intent);
+                            finish();
+                        } else {
+                            Toast.makeText(DetailActivity.this, "Gagal menghapus data", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                })
+                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        dialog.cancel();
+                    }
+                });
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
 }
