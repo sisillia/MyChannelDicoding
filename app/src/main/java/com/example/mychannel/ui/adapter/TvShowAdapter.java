@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.mychannel.R;
+import com.example.mychannel.model.MovieData;
 import com.example.mychannel.model.TvData;
 import com.example.mychannel.ui.DetailActivity;
 
@@ -76,8 +77,8 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.ViewHolder
             btnReadMore.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    TvData list = new TvData();
-                    list.setName(tvData.getName());
+                    MovieData list = new MovieData();
+                    list.setTitle(tvData.getName());
                     list.setOverview(tvData.getOverview());
                     list.setPoster_path(tvData.getPoster_path());
 

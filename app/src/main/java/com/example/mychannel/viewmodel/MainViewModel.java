@@ -99,7 +99,7 @@ public class MainViewModel extends ViewModel {
     }
 
     public LiveData<ArrayList<MovieData>> getDataFavorite(Context context) {
-        lisMovieFavorite.postValue(FavoriteHelper.getInstance(context).getAllNotes());
+        lisMovieFavorite.postValue(FavoriteHelper.getInstance(context).getMovieFavorite());
         return lisMovieFavorite;
     }
 

@@ -51,7 +51,7 @@ public class FavoriteHelper {
             database.close();
     }
 
-    public ArrayList<MovieData> getAllNotes() {
+    public ArrayList<MovieData> getMovieFavorite() {
         open();
         ArrayList<MovieData> arrayList = new ArrayList<>();
         Cursor cursor = database.query(DATABASE_TABLE, null,
