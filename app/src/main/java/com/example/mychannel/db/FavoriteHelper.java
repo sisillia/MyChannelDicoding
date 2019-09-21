@@ -63,9 +63,10 @@ public class FavoriteHelper {
                 _ID + " ASC",
                 null);
         cursor.moveToFirst();
-        MovieData movieData = new MovieData();
+
         if (cursor.getCount() > 0) {
             do {
+                MovieData movieData = new MovieData();
                 movieData.setId(cursor.getInt(cursor.getColumnIndexOrThrow(ID)));
                 movieData.setTitle(cursor.getString(cursor.getColumnIndexOrThrow(TITLE)));
                 movieData.setOverview(cursor.getString(cursor.getColumnIndexOrThrow(DESCRIPTION)));

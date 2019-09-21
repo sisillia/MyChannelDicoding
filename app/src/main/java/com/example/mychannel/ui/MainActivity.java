@@ -3,12 +3,14 @@ package com.example.mychannel.ui;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.example.mychannel.R;
+import com.example.mychannel.model.MovieData;
 import com.example.mychannel.ui.fragment.FavoriteFragment;
 import com.example.mychannel.ui.fragment.MovieFragment;
 import com.example.mychannel.ui.fragment.TvShowFragment;
@@ -28,6 +30,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
 
         bottom_nav.setOnNavigationItemSelectedListener(this);
 
+        if (savedInstanceState == null){
+            bottom_nav.setSelectedItemId(R.id.movie_menu);
+        }
 
     }
 
@@ -36,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.fl_container, fragment)
                     .commit();
+
+
             return true;
         }
         return false;
@@ -57,4 +64,5 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         }
         return loadFragment(fragment);
     }
+
 }

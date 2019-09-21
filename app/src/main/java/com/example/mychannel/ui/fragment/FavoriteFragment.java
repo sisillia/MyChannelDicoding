@@ -54,6 +54,12 @@ public class FavoriteFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        mainViewModel.getDataFavorite(getActivity());
+    }
+
     private Observer<ArrayList<MovieData>> getMovieData = new Observer<ArrayList<MovieData>>() {
         @Override
         public void onChanged(@Nullable ArrayList<MovieData> movieData) {

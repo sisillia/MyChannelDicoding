@@ -78,6 +78,7 @@ public class TvShowAdapter extends RecyclerView.Adapter<TvShowAdapter.ViewHolder
                 @Override
                 public void onClick(View v) {
                     MovieData list = new MovieData();
+                    list.setId(tvData.getId());
                     list.setTitle(tvData.getName());
                     list.setOverview(tvData.getOverview());
                     list.setPoster_path(tvData.getPoster_path());
