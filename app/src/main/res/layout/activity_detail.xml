@@ -31,29 +31,17 @@
 
     <TextView
         android:id="@+id/tv_title_film"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
         android:textColor="@color/white"
         android:textSize="25dp"
         android:textStyle="bold"
-        app:layout_constraintLeft_toRightOf="@id/img_film"
+        app:layout_constraintTop_toBottomOf="@id/img_film"
         tools:ignore="MissingConstraints"
         tools:text="Title of film" />
-
-    <TextView
-        android:id="@+id/tv_year"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
-        android:layout_marginTop="10dp"
-        android:textColor="@color/white"
-        android:textSize="15dp"
-        app:layout_constraintLeft_toRightOf="@id/img_film"
-        app:layout_constraintTop_toBottomOf="@id/tv_title_film"
-        tools:ignore="MissingConstraints"
-        tools:text="Release on Year" />
 
     <TextView
         android:id="@+id/tv_desc_film"
@@ -64,7 +52,7 @@
         android:padding="5dp"
         android:layout_height="wrap_content"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@id/img_film"
+        app:layout_constraintTop_toBottomOf="@id/tv_title_film"
         android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
         tools:ignore="MissingConstraints" />
 
