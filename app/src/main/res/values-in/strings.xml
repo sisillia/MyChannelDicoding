@@ -8,4 +8,10 @@
     <string name="favorite_menu">Favorit</string>
     <string name="read_more">Baca Lebih</string>
     <string name="change_language">Ubah Bahasa</string>
+    <string name="question">Apakah anda yakin ingin menghapus item ini dari favorite?</string>
+    <string name="title_question">Hapus Favorite</string>
+    <string name="yes_question">Ya</string>
+    <string name="no_question">Tidak</string>
+    <string name="failed_delete">Gagal menghapus data</string>
+
 </resources>

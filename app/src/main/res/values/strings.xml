@@ -6,4 +6,9 @@
     <string name="favorite_menu">Favorite</string>
     <string name="read_more">Read More</string>
     <string name="change_language">Change Language</string>
+    <string name="question">Are you sure to delete this item from favorite?</string>
+    <string name="title_question">Delete Favorite</string>
+    <string name="yes_question">Yes</string>
+    <string name="no_question">No</string>
+    <string name="failed_delete">Failed to delete data</string>
 </resources>

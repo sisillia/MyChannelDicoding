@@ -123,15 +123,15 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     private void showAlertDialog(int type) {
 
         String dialogTitle, dialogMessage;
-        dialogMessage = "Apakah anda yakin ingin menghapus item ini dari favorite?";
-        dialogTitle = "Hapus Note";
+        dialogMessage = getResources().getString(R.string.question);
+        dialogTitle = getResources().getString(R.string.title_question);
 
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
         alertDialogBuilder.setTitle(dialogTitle);
         alertDialogBuilder
                 .setMessage(dialogMessage)
                 .setCancelable(false)
-                .setPositiveButton("Ya", new DialogInterface.OnClickListener() {
+                .setPositiveButton(getResources().getString(R.string.yes_question), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
 
                         int result = favoriteHelper.deleteNote(movieData.getId());
@@ -141,11 +141,11 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                             setResult(RESULT_DELETE, intent);
                             finish();
                         } else {
-                            Toast.makeText(DetailActivity.this, "Gagal menghapus data", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(DetailActivity.this, getResources().getString(R.string.failed_delete), Toast.LENGTH_SHORT).show();
                         }
                     }
                 })
-                .setNegativeButton("Tidak", new DialogInterface.OnClickListener() {
+                .setNegativeButton(getResources().getString(R.string.no_question), new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         dialog.cancel();
                     }
